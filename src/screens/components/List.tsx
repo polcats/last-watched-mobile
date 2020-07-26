@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { observer } from 'mobx-react-lite';
-import { FlatList, StyleSheet } from 'react-native';
+import { Text, View, FlatList, StyleSheet } from 'react-native';
 import { appContext, Status } from '../../models';
 import Item from './Item';
 
@@ -36,21 +36,33 @@ const List: React.FC<ListProps> = ({ display }) => {
   }
 
   return (
-    <FlatList
-      style={[styles.list, bgColor]}
-      data={data}
-      renderItem={({ item }) => {
-        return <Item item={item[1]} />;
-      }}
-      keyExtractor={(item) => item[1].id}
-    />
+    <View style={[styles.container, bgColor]}>
+      {data.length ? (
+        <FlatList
+          style={[styles.list]}
+          data={data}
+          renderItem={({ item }) => {
+            return <Item item={item[1]} />;
+          }}
+          keyExtractor={(item) => item[1].id}
+        />
+      ) : (
+        <Text style={styles.emptyText}>
+          Currently no shows under this category.
+        </Text>
+      )}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  list: {
+  container: {
     flex: 1,
     alignContent: 'center',
+    justifyContent: 'center',
+  },
+  list: {
+    flex: 1,
   },
   ongoing: {
     backgroundColor: 'rgb(186, 215, 200)',
@@ -60,6 +72,13 @@ const styles = StyleSheet.create({
   },
   done: {
     backgroundColor: 'rgb(186, 186, 206)',
+  },
+  emptyText: {
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    textAlignVertical: 'center',
+    fontSize: 15,
   },
 });
 

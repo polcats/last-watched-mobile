@@ -18,8 +18,9 @@ import { useFocusEffect } from '@react-navigation/native';
 import { appContext } from '../../models';
 import { FormScreenNavigation } from './types';
 import { Show } from '../../models';
+import { showMessage } from 'react-native-flash-message';
 
-const Form: React.FC<FormScreenNavigation> = ({ route, navigation }) => {
+const Form: React.FC<FormScreenNavigation> = ({ route }) => {
   const context = useContext(appContext);
   const item = context.shows.getTargetItem();
   const itemBackup = context.mode === 'edit' ? getSnapshot(item) : undefined;
@@ -44,10 +45,10 @@ const Form: React.FC<FormScreenNavigation> = ({ route, navigation }) => {
         } else {
           if (context.mode === 'create') {
             item.updateDate();
-            // showMessage({
-            //   message: 'New expense has been added.',
-            //   type: 'success',
-            // });
+            showMessage({
+              message: `${item.name} has been created.`,
+              type: 'success',
+            });
           }
         }
 
@@ -76,6 +77,7 @@ const Form: React.FC<FormScreenNavigation> = ({ route, navigation }) => {
               <TextInput
                 defaultValue={route.params.isNew ? '' : item?.name}
                 autoFocus={true}
+                autoCapitalize="words"
                 style={styles.inputView}
                 placeholder="Enter a show's title"
                 onChangeText={(text) => {
