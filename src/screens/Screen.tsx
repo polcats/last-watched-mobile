@@ -22,8 +22,9 @@ const Screen: React.FC = () => {
             headerRight: () => (
               <TouchableOpacity
                 onPress={() => {
-                  navigation.push('Form', { isNew: true });
+                  context.setMode('create');
                   context.shows.createItem();
+                  navigation.push('Form', { isNew: true });
                 }}
               >
                 <Ionicons name="ios-add-circle" size={30} color="skyblue" />

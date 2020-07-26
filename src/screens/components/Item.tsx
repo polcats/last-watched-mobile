@@ -17,6 +17,7 @@ const Item: React.FC<ItemProps> = ({ item }) => {
   const navigation = useNavigation();
 
   const editItem = () => {
+    context.setMode('edit');
     context.shows.setTargetItem(item.id);
     navigation.navigate('Form', { isNew: false });
   };
@@ -105,8 +106,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: '#fff',
-    margin: 10,
     padding: 10,
+    margin: 10,
+    borderRadius: 10,
+  },
+  'container:last-child': {
+    margin: 200,
   },
   details: {
     flex: 5,

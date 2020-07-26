@@ -28,8 +28,8 @@ class Show extends Model({
   };
 
   @modelAction
-  setDate = (date: string) => {
-    this.date = date;
+  updateDate = () => {
+    this.date = moment().format();
   };
 
   @modelAction
@@ -39,6 +39,7 @@ class Show extends Model({
 
   @modelAction
   incrementEpisode = () => {
+    this.updateDate();
     ++this.lastEpisode;
   };
 
@@ -48,6 +49,7 @@ class Show extends Model({
       return;
     }
 
+    this.updateDate();
     --this.lastEpisode;
   };
 

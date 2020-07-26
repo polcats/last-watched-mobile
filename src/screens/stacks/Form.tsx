@@ -21,7 +21,6 @@ import { Show } from '../../models';
 
 const Form: React.FC<FormScreenNavigation> = ({ route, navigation }) => {
   const context = useContext(appContext);
-
   const item = context.shows.getTargetItem();
   const itemBackup = context.mode === 'edit' ? getSnapshot(item) : undefined;
 
@@ -44,6 +43,7 @@ const Form: React.FC<FormScreenNavigation> = ({ route, navigation }) => {
           }
         } else {
           if (context.mode === 'create') {
+            item.updateDate();
             // showMessage({
             //   message: 'New expense has been added.',
             //   type: 'success',
