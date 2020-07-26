@@ -54,7 +54,6 @@ class Show extends Model({
     if (this.lastEpisode === 0) {
       return;
     }
-
     this.updateDate();
     --this.lastEpisode;
   };

@@ -49,7 +49,12 @@ const Item: React.FC<ItemProps> = ({ item }) => {
   return (
     <View style={styles.container}>
       <View style={styles.arrows}>
-        <TouchableOpacity onPress={() => item.incrementEpisode()}>
+        <TouchableOpacity
+          onPress={() => {
+            item.incrementEpisode();
+            context.shows.save();
+          }}
+        >
           <AntDesign
             style={[styles.icon, styles.placeCenter]}
             name="upcircle"
@@ -60,7 +65,12 @@ const Item: React.FC<ItemProps> = ({ item }) => {
 
         <Text style={styles.episodeText}>{item.lastEpisode}</Text>
 
-        <TouchableOpacity onPress={() => item.decrementEpisode()}>
+        <TouchableOpacity
+          onPress={() => {
+            item.decrementEpisode();
+            context.shows.save();
+          }}
+        >
           <AntDesign
             style={[styles.icon, styles.placeCenter]}
             name="downcircle"
