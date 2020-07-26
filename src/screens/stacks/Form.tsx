@@ -47,6 +47,8 @@ const Form: React.FC<FormScreenNavigation> = ({ route }) => {
               message: `${item.name} has been created.`,
               type: 'success',
             });
+          } else if (context.mode === 'edit') {
+            item.updateDate();
           }
         }
 
