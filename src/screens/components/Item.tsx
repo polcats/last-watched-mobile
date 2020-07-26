@@ -5,6 +5,7 @@ import { Show } from '../../models';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { appContext } from '../../models';
+import { useNavigation } from '@react-navigation/native';
 import moment from 'moment';
 
 type ItemProps = {
@@ -13,6 +14,12 @@ type ItemProps = {
 
 const Item: React.FC<ItemProps> = ({ item }) => {
   const context = useContext(appContext);
+  const navigation = useNavigation();
+
+  const editItem = () => {
+    context.shows.setTargetItem(item.id);
+    navigation.navigate('Form', { isNew: false });
+  };
 
   const confirmDelete = () => {
     Alert.alert(
@@ -68,7 +75,7 @@ const Item: React.FC<ItemProps> = ({ item }) => {
       </View>
 
       <View style={[styles.modifiers]}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={editItem}>
           <MaterialCommunityIcons
             style={[styles.icon, styles.placeCenter]}
             name="circle-edit-outline"
@@ -76,6 +83,7 @@ const Item: React.FC<ItemProps> = ({ item }) => {
             color="black"
           />
         </TouchableOpacity>
+
         <TouchableOpacity onPress={confirmDelete}>
           <MaterialCommunityIcons
             style={[styles.icon, styles.placeCenter]}
