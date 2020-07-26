@@ -13,6 +13,10 @@ type ItemProps = {
 };
 
 const Item: React.FC<ItemProps> = ({ item }) => {
+  if (item.isNew) {
+    return <></>;
+  }
+
   const context = useContext(appContext);
   const navigation = useNavigation();
 

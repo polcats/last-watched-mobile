@@ -43,8 +43,9 @@ const Form: React.FC<FormScreenNavigation> = ({ route }) => {
             }
           }
         } else {
+          item.updateDate();
           if (context.mode === 'create') {
-            item.updateDate();
+            item.setOld();
             showMessage({
               message: `${item.name} has been created.`,
               type: 'success',

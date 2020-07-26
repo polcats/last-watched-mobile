@@ -33,6 +33,11 @@ class Show extends Model({
   };
 
   @modelAction
+  setOld = () => {
+    this.isNew = false;
+  };
+
+  @modelAction
   setName = (name: string) => {
     this.name = name;
   };

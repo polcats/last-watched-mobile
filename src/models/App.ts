@@ -15,7 +15,7 @@ class App extends Model({
   shows: prop<Shows>(),
 }) {
   @observable mode: string = 'create';
-  @observable dontSave: boolean = false;
+  @observable dontSave: boolean = true;
   @observable errors = {
     name: false,
     episode: false,
@@ -45,26 +45,25 @@ const createStore = (): App => {
     }),
   });
 
-  store.shows.createItem(new Show({ name: 'Lorem', lastEpisode: 3 }));
-  store.shows.createItem(new Show({ name: 'Ipsum', lastEpisode: 12 }));
-  store.shows.createItem(new Show({ name: 'Battle Geese', lastEpisode: 43 }));
-  store.shows.createItem(new Show({ name: 'Battle Geese', lastEpisode: 43 }));
-  store.shows.createItem(new Show({ name: 'Battle Geese', lastEpisode: 43 }));
-  store.shows.createItem(new Show({ name: 'Battle Geese', lastEpisode: 43 }));
-  store.shows.createItem(new Show({ name: 'Battle Geese', lastEpisode: 43 }));
-  store.shows.createItem(new Show({ name: 'Battle Geese', lastEpisode: 43 }));
+  store.shows.createItem(
+    new Show({ isNew: false, name: 'Lorem', lastEpisode: 3 }),
+  );
+  store.shows.createItem(
+    new Show({ isNew: false, name: 'Ipsum', lastEpisode: 12 }),
+  );
+  store.shows.createItem(
+    new Show({ isNew: false, name: 'Battle Geese', lastEpisode: 43 }),
+  );
   store.shows.createItem(
     new Show({
+      isNew: false,
       name: 'Battle GeeseBattle GeeseBattle Geese ',
       lastEpisode: 43,
     }),
   );
-  store.shows.createItem(new Show({ name: 'Battle Geese', lastEpisode: 43 }));
-  store.shows.createItem(new Show({ name: 'Battle Geese', lastEpisode: 43 }));
-  store.shows.createItem(new Show({ name: 'Battle Geese', lastEpisode: 43 }));
-  store.shows.createItem(new Show({ name: 'Battle Geese', lastEpisode: 43 }));
   store.shows.createItem(
     new Show({
+      isNew: false,
       name: 'Battle Geese Lorem Lorem Lorem Lorem Lorem',
       lastEpisode: 43,
     }),

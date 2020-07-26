@@ -1,6 +1,6 @@
 import 'mobx-react-lite/batchingForReactDom';
 import React, { useContext } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import { observer } from 'mobx-react-lite';
 import { NavigationContainer } from '@react-navigation/native';
 import { Home, Form, Stack } from './stacks';
@@ -25,11 +25,16 @@ const Screen: React.FC = () => {
                 <TouchableOpacity
                   onPress={() => {
                     context.setMode('create');
-                    context.shows.createItem();
                     navigation.push('Form', { isNew: true });
+                    context.shows.createItem();
                   }}
                 >
-                  <Ionicons name="ios-add-circle" size={30} color="skyblue" />
+                  <Ionicons
+                    style={styles.iconRight}
+                    name="ios-add-circle"
+                    size={30}
+                    color="skyblue"
+                  />
                 </TouchableOpacity>
               ),
             })}
@@ -70,6 +75,7 @@ const Screen: React.FC = () => {
                   }}
                 >
                   <MaterialCommunityIcons
+                    style={styles.iconRight}
                     name="check"
                     size={30}
                     color="green"
@@ -85,5 +91,11 @@ const Screen: React.FC = () => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  iconRight: {
+    marginRight: 20,
+  },
+});
 
 export default observer(Screen);
