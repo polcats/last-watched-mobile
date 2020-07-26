@@ -1,7 +1,6 @@
 import { model, Model, modelAction, prop_mapObject } from 'mobx-keystone';
 import { AsyncStorage } from 'react-native';
 import Show from './Show';
-import { Item } from '../screens/components';
 
 @model('lastwatched/Shows')
 class Shows extends Model({

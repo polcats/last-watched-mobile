@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { appContext } from '../../models';
 import { HomeScreenNavigation } from './types';
 import { OnGoing, OnHold, Done } from '../tabs';
 import { Tab } from '../tabs';
