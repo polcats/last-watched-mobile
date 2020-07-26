@@ -17,7 +17,6 @@ import {
 import { useFocusEffect } from '@react-navigation/native';
 import { appContext } from '../../models';
 import { FormScreenNavigation } from './types';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Show } from '../../models';
 
 const Form: React.FC<FormScreenNavigation> = ({ route, navigation }) => {
@@ -96,7 +95,9 @@ const Form: React.FC<FormScreenNavigation> = ({ route, navigation }) => {
                 placeholder="Last watched episode"
                 defaultValue={`${route.params.isNew ? '' : item?.lastEpisode}`}
                 onChangeText={(text) => {
-                  item?.setEpisode(parseInt(text, 10));
+                  if (text) {
+                    item?.setEpisode(parseInt(text, 10));
+                  }
                 }}
               ></TextInput>
 
