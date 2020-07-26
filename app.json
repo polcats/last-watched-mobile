@@ -19,6 +19,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "package": "polcats.lastwatchedm",
+      "versionCode": 1
     }
   }
 }
