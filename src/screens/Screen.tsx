@@ -13,7 +13,7 @@ import FlashMessage from 'react-native-flash-message';
 const Screen: React.FC = () => {
   const context = useContext(appContext);
 
-  const load = async () => {
+  (async () => {
     try {
       const data = await AsyncStorage.getItem('lastWatchedData');
       const items = data ? JSON.parse(data) : undefined;
@@ -23,9 +23,7 @@ const Screen: React.FC = () => {
         });
       }
     } catch (error) {}
-  };
-
-  load();
+  })();
 
   return (
     <>
