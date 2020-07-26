@@ -41,21 +41,21 @@ const Home: React.FC<HomeScreenNavigation> = ({ route, navigation }) => {
     >
       <Tab.Screen
         name="OnGoing"
-        options={({ navigation }) => ({
+        options={() => ({
           title: 'On Going',
         })}
         component={OnGoing}
       />
       <Tab.Screen
         name="OnHold"
-        options={({ navigation }) => ({
+        options={() => ({
           title: 'On Hold',
         })}
         component={OnHold}
       />
       <Tab.Screen
         name="Done"
-        options={({ navigation }) => ({
+        options={() => ({
           title: 'Finished',
         })}
         component={Done}
