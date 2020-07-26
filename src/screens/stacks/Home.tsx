@@ -4,11 +4,41 @@ import { appContext } from '../../models';
 import { HomeScreenNavigation } from './types';
 import { OnGoing, OnHold, Done } from '../tabs';
 import { Tab } from '../tabs';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Home: React.FC<HomeScreenNavigation> = ({ route, navigation }) => {
   const context = useContext(appContext);
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName = '';
+
+          switch (route.name) {
+            case 'OnGoing': {
+              iconName = focused ? 'play-circle' : 'play-circle-outline';
+              break;
+            }
+            case 'OnHold': {
+              iconName = focused ? 'pause-circle' : 'pause-circle-outline';
+              break;
+            }
+            case 'Done': {
+              iconName = focused ? 'check-circle' : 'check-circle-outline';
+              break;
+            }
+          }
+
+          return (
+            <MaterialCommunityIcons name={iconName} size={size} color={color} />
+          );
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: 'tomato',
+        inactiveTintColor: 'gray',
+      }}
+    >
       <Tab.Screen
         name="OnGoing"
         options={({ navigation }) => ({

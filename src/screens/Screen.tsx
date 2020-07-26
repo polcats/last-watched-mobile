@@ -5,6 +5,8 @@ import { observer } from 'mobx-react-lite';
 import { NavigationContainer } from '@react-navigation/native';
 import { Home, Form, Stack } from './stacks';
 import { appContext } from '../models';
+import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Screen: React.FC = () => {
   const context = useContext(appContext);
@@ -20,7 +22,7 @@ const Screen: React.FC = () => {
               <TouchableOpacity
                 onPress={() => navigation.push('Form', { isNew: true })}
               >
-                <Text>Create</Text>
+                <Ionicons name="ios-add-circle" size={30} color="skyblue" />
               </TouchableOpacity>
             ),
           })}
@@ -32,7 +34,7 @@ const Screen: React.FC = () => {
             title: `${route.params?.isNew ? 'Create' : 'Edit'} Show`,
             headerRight: () => (
               <TouchableOpacity onPress={() => navigation.pop()}>
-                <Text>Save</Text>
+                <MaterialCommunityIcons name="check" size={30} color="green" />
               </TouchableOpacity>
             ),
           })}
