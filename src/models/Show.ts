@@ -34,6 +34,7 @@ class Show extends Model({
 
   @modelAction
   setOld = () => {
+    this.updateDate();
     this.isNew = false;
   };
 
