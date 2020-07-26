@@ -26,14 +26,10 @@ class Shows extends Model({
 
   @modelAction
   save = async () => {
-    console.log('Save called.');
     try {
       const jsonValue = JSON.stringify(Array.from(this.items));
       await AsyncStorage.setItem('lastWatchedData', jsonValue);
-      console.log('Saved!');
-    } catch (error) {
-      console.log('Save error');
-    }
+    } catch (error) {}
   };
 
   @modelAction
@@ -66,12 +62,14 @@ class Shows extends Model({
   @modelAction
   deleteItem = (id: string) => {
     this.items.delete(id);
+    this.save();
   };
 
   @modelAction
   deleteTargetItem = () => {
     this.items.delete(this.targetItem);
     this.setTargetItem('');
+    this.save();
   };
 }
 
