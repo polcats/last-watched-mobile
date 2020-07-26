@@ -58,4 +58,5 @@ class Show extends Model({
   }
 }
 
+export type { Status };
 export default Show;
