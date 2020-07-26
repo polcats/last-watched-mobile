@@ -6,7 +6,7 @@ import { Status } from '../../models';
 
 type RootStackParams = {
   Home: { tab: Status };
-  Form: { isNew: boolean; title?: string };
+  Form: { isNew: boolean };
 };
 
 type HomeScreenNavigation = StackScreenProps<RootStackParams, 'Home'>;

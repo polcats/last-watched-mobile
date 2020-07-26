@@ -44,7 +44,16 @@ class Show extends Model({
 
   @modelAction
   decrementEpisode = () => {
+    if (this.lastEpisode === 0) {
+      return;
+    }
+
     --this.lastEpisode;
+  };
+
+  @modelAction
+  setEpisode = (episode: number) => {
+    this.lastEpisode = episode;
   };
 
   @modelAction
@@ -55,6 +64,16 @@ class Show extends Model({
   @computed
   get isValidName() {
     return this.name.trim().length !== 0;
+  }
+
+  @computed
+  get isValidEpisode() {
+    return this.lastEpisode >= 0;
+  }
+
+  @computed
+  get isValid() {
+    return this.isValidName && this.isValidEpisode;
   }
 }
 

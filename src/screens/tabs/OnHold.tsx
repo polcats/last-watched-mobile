@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { Text } from 'react-native';
-import { appContext } from '../../models';
+import { Status } from '../../models';
+import { List } from '../components/';
 
 const OnHold: React.FC = () => {
-  const context = useContext(appContext);
-  return <Text>OnHold List..</Text>;
+  return <List display={'onhold' as Status.onhold} />;
 };
 
 export default observer(OnHold);

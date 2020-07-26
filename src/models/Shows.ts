@@ -8,9 +8,6 @@ class Shows extends Model({
 }) {
   targetItem: string = '';
 
-  @observable dontSave = true;
-  @observable showError = false;
-
   @modelAction
   getTargetItem = () => {
     return this.items.get(this.targetItem);
@@ -27,8 +24,8 @@ class Shows extends Model({
   };
 
   @modelAction
-  createItem = () => {
-    const item = new Show({});
+  createItem = (toAdd?: Show) => {
+    const item = toAdd ? toAdd : new Show({});
     this.items.set(item.id, item);
     this.targetItem = item.id;
   };
@@ -41,6 +38,12 @@ class Shows extends Model({
   @modelAction
   deleteItem = (id: string) => {
     this.items.delete(id);
+  };
+
+  @modelAction
+  deleteTargetItem = () => {
+    this.items.delete(this.targetItem);
+    this.setTargetItem('');
   };
 }
 

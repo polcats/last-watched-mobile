@@ -18,9 +18,13 @@ const Screen: React.FC = () => {
           name="Home"
           options={({ navigation }) => ({
             title: 'Watch List',
+            headerTitleAlign: 'center',
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => navigation.push('Form', { isNew: true })}
+                onPress={() => {
+                  navigation.push('Form', { isNew: true });
+                  context.shows.createItem();
+                }}
               >
                 <Ionicons name="ios-add-circle" size={30} color="skyblue" />
               </TouchableOpacity>
@@ -31,9 +35,37 @@ const Screen: React.FC = () => {
         <Stack.Screen
           name="Form"
           options={({ route, navigation }) => ({
+            headerTitleAlign: 'center',
             title: `${route.params?.isNew ? 'Create' : 'Edit'} Show`,
             headerRight: () => (
-              <TouchableOpacity onPress={() => navigation.pop()}>
+              <TouchableOpacity
+                onPress={() => {
+                  context.setDontSave(false);
+
+                  // Success scenario
+                  if (
+                    context.shows.getTargetItem()?.isValid &&
+                    !context.dontSave
+                  ) {
+                    navigation.pop();
+
+                    // For consecutive additions
+                    if (context.mode === 'create') {
+                      context.shows.createItem();
+                      navigation.push('Form', { isNew: true });
+                    }
+
+                    return;
+                  }
+
+                  // For error scenario
+                  context.setDontSave(true);
+                  const item = context.shows.getTargetItem();
+                  if (item) {
+                    context.setError(!item.isValidName, !item.isValidEpisode);
+                  }
+                }}
+              >
                 <MaterialCommunityIcons name="check" size={30} color="green" />
               </TouchableOpacity>
             ),

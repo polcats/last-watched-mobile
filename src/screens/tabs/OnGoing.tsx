@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { Text } from 'react-native';
-import { appContext } from '../../models';
+import { Status } from '../../models';
+import { List } from '../components/';
 
 const OnGoing: React.FC = () => {
-  const context = useContext(appContext);
-  return <Text>OnGoing List..</Text>;
+  return <List display={'ongoing' as Status.ongoing} />;
 };
 
 export default observer(OnGoing);
