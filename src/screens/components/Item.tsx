@@ -13,10 +13,6 @@ type ItemProps = {
 };
 
 const Item: React.FC<ItemProps> = ({ item }) => {
-  if (item.isNew) {
-    return <></>;
-  }
-
   const context = useContext(appContext);
   const navigation = useNavigation();
 
@@ -45,6 +41,10 @@ const Item: React.FC<ItemProps> = ({ item }) => {
       { cancelable: false },
     );
   };
+
+  if (item.isNew) {
+    return <></>;
+  }
 
   return (
     <View style={styles.container}>

@@ -8,7 +8,6 @@ import {
 } from 'mobx-keystone';
 import { observable } from 'mobx';
 import Shows from './Shows';
-import Show from './Show';
 
 @model('lastwatched/App')
 class App extends Model({
@@ -44,31 +43,6 @@ const createStore = (): App => {
       items: new Map(),
     }),
   });
-
-  store.shows.createItem(
-    new Show({ isNew: false, name: 'Lorem', lastEpisode: 3 }),
-  );
-  store.shows.createItem(
-    new Show({ isNew: false, name: 'Ipsum', lastEpisode: 12 }),
-  );
-  store.shows.createItem(
-    new Show({ isNew: false, name: 'Battle Geese', lastEpisode: 43 }),
-  );
-  store.shows.createItem(
-    new Show({
-      isNew: false,
-      name: 'Battle GeeseBattle GeeseBattle Geese ',
-      lastEpisode: 43,
-    }),
-  );
-  store.shows.createItem(
-    new Show({
-      isNew: false,
-      name: 'Battle Geese Lorem Lorem Lorem Lorem Lorem',
-      lastEpisode: 43,
-    }),
-  );
-
   registerRootStore(store);
   return store;
 };

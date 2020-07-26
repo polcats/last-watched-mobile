@@ -7,10 +7,26 @@ import { Home, Form, Stack } from './stacks';
 import { appContext } from '../models';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AsyncStorage } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 
 const Screen: React.FC = () => {
   const context = useContext(appContext);
+
+  const load = async () => {
+    try {
+      const data = await AsyncStorage.getItem('lastWatchedData');
+      const items = data ? JSON.parse(data) : undefined;
+      if (items) {
+        items.forEach((value: any) => {
+          context.shows.addItem(value[1].$);
+        });
+      }
+    } catch (error) {}
+  };
+
+  load();
+
   return (
     <>
       <NavigationContainer>
@@ -55,6 +71,7 @@ const Screen: React.FC = () => {
                       !context.dontSave
                     ) {
                       navigation.pop();
+                      context.shows.save();
 
                       // For consecutive additions
                       if (context.mode === 'create') {
