@@ -12,7 +12,7 @@ enum Status {
 @model('lastwatched/Show')
 class Show extends Model({
   id: prop<string>(() => uuidv4()),
-  date: prop<string>(() => moment().format()),
+  date: prop<string>(() => moment().format('MMMM Do YYYY, h:mm:ss a')),
   name: prop<string>(''),
   lastEpisode: prop<number>(0),
   status: prop<Status>(Status.ongoing),
