@@ -85,7 +85,7 @@ const Item: React.FC<ItemProps> = ({ item }) => {
           {item.name}
         </Text>
         <Text style={styles.dateText}>
-          Last watched {moment(item.date).fromNow()}
+          Last updated {moment(item.date).fromNow()}
         </Text>
       </View>
 
