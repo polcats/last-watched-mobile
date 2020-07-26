@@ -63,7 +63,9 @@ const Item: React.FC<ItemProps> = ({ item }) => {
           />
         </TouchableOpacity>
 
-        <Text style={styles.episodeText}>{item.lastEpisode}</Text>
+        <Text numberOfLines={1} style={styles.episodeText}>
+          {item.lastEpisode}
+        </Text>
 
         <TouchableOpacity
           onPress={() => {
@@ -160,7 +162,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   episodeText: {
-    fontSize: 20,
+    fontSize: 15,
     textAlign: 'center',
   },
   titleText: {
