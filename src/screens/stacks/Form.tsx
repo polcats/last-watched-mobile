@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { observer } from 'mobx-react-lite';
 import { getSnapshot } from 'mobx-keystone';
 import {
@@ -12,7 +12,6 @@ import {
   Picker,
   StyleSheet,
   Platform,
-  TouchableOpacity,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { appContext } from '../../models';
@@ -39,11 +38,9 @@ const Form: React.FC<FormScreenNavigation> = ({ route }) => {
           } else if (context.mode === 'edit') {
             if (itemBackup) {
               context.shows.resetTargetItem(itemBackup as Show);
-              console.log('wew');
             }
           }
         } else {
-          item.updateDate();
           if (context.mode === 'create') {
             item.setOld();
             showMessage({

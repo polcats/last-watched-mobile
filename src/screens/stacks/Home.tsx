@@ -6,8 +6,7 @@ import { OnGoing, OnHold, Done } from '../tabs';
 import { Tab } from '../tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const Home: React.FC<HomeScreenNavigation> = ({ route, navigation }) => {
-  const context = useContext(appContext);
+const Home: React.FC<HomeScreenNavigation> = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({

@@ -11,7 +11,6 @@ import FlashMessage from 'react-native-flash-message';
 
 const Screen: React.FC = () => {
   const context = useContext(appContext);
-
   return (
     <>
       <NavigationContainer>

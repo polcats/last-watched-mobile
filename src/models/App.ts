@@ -6,8 +6,8 @@ import {
   registerRootStore,
   modelAction,
 } from 'mobx-keystone';
-import Shows from './Shows';
 import { observable } from 'mobx';
+import Shows from './Shows';
 import Show from './Show';
 
 @model('lastwatched/App')

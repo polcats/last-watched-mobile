@@ -1,5 +1,4 @@
 import { model, Model, modelAction, prop_mapObject } from 'mobx-keystone';
-import { observable } from 'mobx';
 import Show from './Show';
 
 @model('lastwatched/Shows')
