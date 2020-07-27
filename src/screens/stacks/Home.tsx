@@ -9,20 +9,23 @@ const Home: React.FC<HomeScreenNavigation> = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({ color, focused, size }) => {
           let iconName = '';
 
           switch (route.name) {
             case 'OnGoing': {
               iconName = focused ? 'play-circle' : 'play-circle-outline';
+              color = focused ? 'rgb(186, 215, 200)' : color;
               break;
             }
             case 'OnHold': {
               iconName = focused ? 'pause-circle' : 'pause-circle-outline';
+              color = focused ? 'rgb(253, 228, 130)' : color;
               break;
             }
             case 'Done': {
               iconName = focused ? 'check-circle' : 'check-circle-outline';
+              color = focused ? 'rgb(186, 186, 206)' : color;
               break;
             }
           }
@@ -33,8 +36,8 @@ const Home: React.FC<HomeScreenNavigation> = () => {
         },
       })}
       tabBarOptions={{
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
+        activeTintColor: 'black',
+        inactiveTintColor: '#999',
         labelStyle: {
           fontFamily: 'Ubuntu',
         },
