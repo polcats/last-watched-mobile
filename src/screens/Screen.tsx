@@ -33,6 +33,9 @@ const Screen: React.FC = () => {
             name="Home"
             options={({ navigation }) => ({
               title: 'Watch List',
+              headerTitleStyle: {
+                fontFamily: 'Ubuntu',
+              },
               headerTitleAlign: 'center',
               headerRight: () => (
                 <TouchableOpacity
@@ -56,8 +59,11 @@ const Screen: React.FC = () => {
           <Stack.Screen
             name="Form"
             options={({ route, navigation }) => ({
-              headerTitleAlign: 'center',
               title: `${route.params?.isNew ? 'Create' : 'Edit'} Show`,
+              headerTitleStyle: {
+                fontFamily: 'Ubuntu',
+              },
+              headerTitleAlign: 'center',
               headerRight: () => (
                 <TouchableOpacity
                   onPress={() => {

@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     textAlignVertical: 'center',
     fontSize: 15,
+    fontFamily: 'Ubuntu',
   },
 });
 

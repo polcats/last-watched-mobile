@@ -160,16 +160,19 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#555',
     textAlign: 'center',
+    fontFamily: 'Ubuntu',
   },
   episodeText: {
     fontSize: 15,
     textAlign: 'center',
+    fontFamily: 'Ubuntu',
   },
   titleText: {
     fontSize: 20,
     textAlign: 'center',
     paddingLeft: 5,
     paddingRight: 5,
+    fontFamily: 'Ubuntu',
   },
 });
 

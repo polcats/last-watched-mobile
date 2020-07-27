@@ -35,6 +35,9 @@ const Home: React.FC<HomeScreenNavigation> = () => {
       tabBarOptions={{
         activeTintColor: 'tomato',
         inactiveTintColor: 'gray',
+        labelStyle: {
+          fontFamily: 'Ubuntu',
+        },
       }}
     >
       <Tab.Screen

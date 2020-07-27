@@ -145,12 +145,14 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 20,
     marginTop: 20,
+    fontFamily: 'Ubuntu',
   },
   inputView: {
     backgroundColor: '#fff',
     marginTop: 5,
     borderRadius: 0,
     padding: 10,
+    fontFamily: 'Ubuntu',
   },
   inputError: {
     color: 'red',
