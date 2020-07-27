@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
-import { appContext, Status } from '../../models';
+import { appContext, Status, Show } from '../../models';
 import Item from './Item';
 
 type ListProps = {
   display: Status;
 };
+
+type MapShowItem = [string, Show];
 
 const List: React.FC<ListProps> = ({ display }) => {
   const context = useContext(appContext);
@@ -18,6 +20,10 @@ const List: React.FC<ListProps> = ({ display }) => {
         return item;
       }
     });
+
+  const renderItem = ({ item }: { item: MapShowItem }) => {
+    return <Item item={item[1]} />;
+  };
 
   let bgColor;
   switch (display) {
@@ -41,9 +47,7 @@ const List: React.FC<ListProps> = ({ display }) => {
         <FlatList
           style={[styles.list]}
           data={data}
-          renderItem={({ item }) => {
-            return <Item item={item[1]} />;
-          }}
+          renderItem={renderItem}
           keyExtractor={(item) => item[1].id}
         />
       ) : (
