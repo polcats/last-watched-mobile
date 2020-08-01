@@ -1,10 +1,40 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
+import { TouchableOpacity, StyleSheet } from 'react-native';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { appContext } from '../../models';
 import { HomeScreenNavigation } from './types';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Tab, OnGoing, OnHold, Done } from '../tabs';
 
-const Home: React.FC<HomeScreenNavigation> = () => {
+const Home: React.FC<HomeScreenNavigation> = ({ navigation }) => {
+  const context = React.useContext(appContext);
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      title: 'Watch List',
+      headerTitleStyle: {
+        fontFamily: 'Ubuntu',
+      },
+      headerTitleAlign: 'center',
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => {
+            context.setMode('create');
+            navigation.push('Form', { isNew: true });
+            context.shows.createItem();
+          }}
+        >
+          <Ionicons
+            style={styles.iconRight}
+            name="ios-add-circle"
+            size={30}
+            color="skyblue"
+          />
+        </TouchableOpacity>
+      ),
+    });
+  });
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -66,5 +96,11 @@ const Home: React.FC<HomeScreenNavigation> = () => {
     </Tab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  iconRight: {
+    marginRight: 20,
+  },
+});
 
 export default observer(Home);

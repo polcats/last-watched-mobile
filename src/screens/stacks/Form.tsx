@@ -8,14 +8,16 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   Picker,
+  TouchableOpacity,
   StyleSheet,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { showMessage } from 'react-native-flash-message';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Show, appContext } from '../../models';
 import { FormScreenNavigation } from './types';
 
-const Form: React.FC<FormScreenNavigation> = ({ route }) => {
+const Form: React.FC<FormScreenNavigation> = ({ route, navigation }) => {
   const context = useContext(appContext);
   const item = context.shows.getTargetItem();
   const itemBackup = context.mode === 'edit' ? getSnapshot(item) : undefined;
@@ -53,6 +55,51 @@ const Form: React.FC<FormScreenNavigation> = ({ route }) => {
       };
     }, []),
   );
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      title: `${route.params?.isNew ? 'Create' : 'Edit'} Show`,
+      headerTitleStyle: {
+        fontFamily: 'Ubuntu',
+      },
+      headerTitleAlign: 'center',
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => {
+            context.setDontSave(false);
+
+            // Success scenario
+            if (context.shows.getTargetItem()?.isValid && !context.dontSave) {
+              navigation.pop();
+              context.shows.save();
+
+              // For consecutive additions
+              if (context.mode === 'create') {
+                context.shows.createItem();
+                navigation.push('Form', { isNew: true });
+              }
+
+              return;
+            }
+
+            // For error scenario
+            context.setDontSave(true);
+            const item = context.shows.getTargetItem();
+            if (item) {
+              context.setError(!item.isValidName, !item.isValidEpisode);
+            }
+          }}
+        >
+          <MaterialCommunityIcons
+            style={styles.iconRight}
+            name="check"
+            size={30}
+            color="green"
+          />
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation]);
 
   return (
     <TouchableWithoutFeedback
@@ -146,6 +193,9 @@ const styles = StyleSheet.create({
   highlightError: {
     borderColor: 'red',
     borderWidth: 1,
+  },
+  iconRight: {
+    marginRight: 20,
   },
 });
 
