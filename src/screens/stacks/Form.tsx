@@ -131,7 +131,7 @@ const Form: React.FC<FormScreenNavigation> = ({ route, navigation }) => {
             style={styles.inputView}
             keyboardType="numeric"
             placeholder="Last watched episode"
-            defaultValue={`${route.params.isNew ? '' : item?.lastEpisode}`}
+            defaultValue={`${route.params.isNew ? 1 : item?.lastEpisode}`}
             onChangeText={(text) => {
               if (text) {
                 item?.setEpisode(parseInt(text, 10));
