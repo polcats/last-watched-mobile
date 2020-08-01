@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Text, View, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { Show } from '../../models';
-import { AntDesign } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { appContext } from '../../models';
 import { useNavigation } from '@react-navigation/native';
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Show, appContext } from '../../models';
 import moment from 'moment';
 
 type ItemProps = {

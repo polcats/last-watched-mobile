@@ -4,8 +4,6 @@ import {
   TouchableOpacity,
   StyleSheet,
   KeyboardAvoidingView,
-  Keyboard,
-  TouchableWithoutFeedback,
   SafeAreaView,
   Platform,
 } from 'react-native';
@@ -13,8 +11,7 @@ import { observer } from 'mobx-react-lite';
 import { NavigationContainer } from '@react-navigation/native';
 import { Home, Form, Stack } from './stacks';
 import { appContext } from '../models';
-import { Ionicons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import FlashMessage from 'react-native-flash-message';
 
 const Screen: React.FC = () => {

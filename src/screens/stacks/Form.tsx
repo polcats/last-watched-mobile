@@ -11,10 +11,9 @@ import {
   StyleSheet,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
-import { appContext } from '../../models';
-import { FormScreenNavigation } from './types';
-import { Show } from '../../models';
 import { showMessage } from 'react-native-flash-message';
+import { Show, appContext } from '../../models';
+import { FormScreenNavigation } from './types';
 
 const Form: React.FC<FormScreenNavigation> = ({ route }) => {
   const context = useContext(appContext);

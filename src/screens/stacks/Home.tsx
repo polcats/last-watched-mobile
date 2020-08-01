@@ -1,9 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { HomeScreenNavigation } from './types';
-import { OnGoing, OnHold, Done } from '../tabs';
-import { Tab } from '../tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Tab, OnGoing, OnHold, Done } from '../tabs';
 
 const Home: React.FC<HomeScreenNavigation> = () => {
   return (
