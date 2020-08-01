@@ -5,13 +5,10 @@ import {
   Text,
   TextInput,
   View,
-  KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
-  SafeAreaView,
   Picker,
   StyleSheet,
-  Platform,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { appContext } from '../../models';
@@ -59,67 +56,56 @@ const Form: React.FC<FormScreenNavigation> = ({ route }) => {
   );
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.keyboard}
+    <TouchableWithoutFeedback
+      style={styles.touchable}
+      onPress={() => Keyboard.dismiss()}
     >
-      <SafeAreaView style={styles.container}>
-        <TouchableWithoutFeedback
-          style={styles.touchable}
-          onPress={() => Keyboard.dismiss()}
-        >
-          <View style={styles.inner}>
-            <>
-              <Text style={styles.label}>Title</Text>
-              {!!context.errors.name && (
-                <Text style={styles.inputError}>Title is required..</Text>
-              )}
-              <TextInput
-                defaultValue={route.params.isNew ? '' : item?.name}
-                autoFocus={true}
-                autoCapitalize="words"
-                style={styles.inputView}
-                placeholder="Enter a show's title"
-                onChangeText={(text) => {
-                  item?.setName(text);
-                }}
-              ></TextInput>
+      <View style={styles.inner}>
+        <>
+          <Text style={styles.label}>Title</Text>
+          {!!context.errors.name && (
+            <Text style={styles.inputError}>Title is required..</Text>
+          )}
+          <TextInput
+            defaultValue={route.params.isNew ? '' : item?.name}
+            autoFocus={true}
+            autoCapitalize="words"
+            style={styles.inputView}
+            placeholder="Enter a show's title"
+            onChangeText={(text) => {
+              item?.setName(text);
+            }}
+          ></TextInput>
 
-              <Text style={styles.label}>Episode</Text>
-              {!!context.errors.episode && (
-                <Text style={styles.inputError}>
-                  Enter a valid episode (eg. 1)
-                </Text>
-              )}
-              <TextInput
-                style={styles.inputView}
-                keyboardType="numeric"
-                placeholder="Last watched episode"
-                defaultValue={`${route.params.isNew ? '' : item?.lastEpisode}`}
-                onChangeText={(text) => {
-                  if (text) {
-                    item?.setEpisode(parseInt(text, 10));
-                  }
-                }}
-              ></TextInput>
+          <Text style={styles.label}>Episode</Text>
+          {!!context.errors.episode && (
+            <Text style={styles.inputError}>Enter a valid episode (eg. 1)</Text>
+          )}
+          <TextInput
+            style={styles.inputView}
+            keyboardType="numeric"
+            placeholder="Last watched episode"
+            defaultValue={`${route.params.isNew ? '' : item?.lastEpisode}`}
+            onChangeText={(text) => {
+              if (text) {
+                item?.setEpisode(parseInt(text, 10));
+              }
+            }}
+          ></TextInput>
 
-              <Text style={styles.label}>Status</Text>
-              <Picker
-                style={styles.inputView}
-                selectedValue={item?.status}
-                onValueChange={(itemValue, itemIndex) =>
-                  item?.setStatus(itemValue)
-                }
-              >
-                <Picker.Item label="Actively watching" value="ongoing" />
-                <Picker.Item label="Taking a break" value="onhold" />
-                <Picker.Item label="Finished" value="done" />
-              </Picker>
-            </>
-          </View>
-        </TouchableWithoutFeedback>
-      </SafeAreaView>
-    </KeyboardAvoidingView>
+          <Text style={styles.label}>Status</Text>
+          <Picker
+            style={styles.inputView}
+            selectedValue={item?.status}
+            onValueChange={(itemValue, itemIndex) => item?.setStatus(itemValue)}
+          >
+            <Picker.Item label="Actively watching" value="ongoing" />
+            <Picker.Item label="Taking a break" value="onhold" />
+            <Picker.Item label="Finished" value="done" />
+          </Picker>
+        </>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
